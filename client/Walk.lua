@@ -20,6 +20,14 @@ function ResetWalk()
     ResetPedMovementClipset(PlayerPedId())
 end
 
+function RequestWalking(set)
+    local timeout = GetGameTimer() + 5000
+    while not HasAnimSetLoaded(set) and GetGameTimer() < timeout do
+        RequestAnimSet(set)
+        Wait(5)
+    end
+end
+
 function WalksOnCommand(source, args, raw)
     local WalksCommand = ""
     for a in pairsByKeys(RP.Walks) do
@@ -50,6 +58,10 @@ function WalkCommandStart(source, args, raw)
     else
         EmoteChatMessage("'" .. name .. "' is not a valid walk")
     end
+end
+
+function tableHasKey(table, key)
+    return table[key] ~= nil
 end
 
 if Config.WalkingStylesEnabled and Config.PersistentWalk then

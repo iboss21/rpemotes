@@ -18,7 +18,7 @@ RegisterNetEvent("ServerEmoteRequest", function(target, emotename, etype)
         return
     end
 
-    TriggerClientEvent("ClientEmoteRequestReceive", target, emotename, etype, source)
+    TriggerClientEvent("ClientEmoteRequestReceive", target, emotename, etype)
 end)
 
 RegisterNetEvent("ServerValidEmote", function(target, requestedemote, otheremote)
